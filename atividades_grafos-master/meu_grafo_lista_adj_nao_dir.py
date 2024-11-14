@@ -39,12 +39,23 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             if self.arestas[i].v2.rotulo == V:
                 contador += 1
         return contador
+
     def ha_paralelas(self):
         '''
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
         '''
-        pass
+        for i in self.arestas:
+            for j in self.arestas:
+                if(i == j):
+                    continue
+                if(self.arestas[i].v1.rotulo == self.arestas[j].v1.rotulo and self.arestas[i].v2.rotulo ==
+                        self.arestas[j].v2.rotulo):
+                    return True
+                elif(self.arestas[i].v1.rotulo == self.arestas[j].v2.rotulo and self.arestas[i].v2.rotulo ==
+                      self.arestas[j].v1.rotulo):
+                    return True
+        return False
 
     def arestas_sobre_vertice(self, V):
         '''
