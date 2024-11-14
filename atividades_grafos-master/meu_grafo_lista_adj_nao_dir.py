@@ -64,7 +64,15 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         :return: Uma lista os rótulos das arestas que incidem sobre o vértice
         :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
-        pass
+        arestas = set()
+        if not self.existe_rotulo_vertice(V):
+            raise VerticeInvalidoError("Vértice inexistente!")
+        for i in self.arestas:
+            if self.arestas[i].v1.rotulo == V:
+                arestas.add(i)
+            if self.arestas[i].v2.rotulo == V:
+                arestas.add(i)
+        return arestas
 
     def eh_completo(self):
         '''
