@@ -79,4 +79,12 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
         '''
-        pass
+        if(not(self.ha_paralelas() and self.ha_laco())): # Se não houver laços ou paralelas
+            qntVertices = len(self.vertices)
+            for i in self.vertices:
+                if(self.grau(i.rotulo) == qntVertices-1):
+                    continue
+                else:
+                    return False
+            return True
+        return False
