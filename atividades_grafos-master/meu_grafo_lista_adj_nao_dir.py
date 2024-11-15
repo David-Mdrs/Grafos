@@ -11,7 +11,17 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
         :return: Um objeto do tipo set que contém os pares de vértices não adjacentes
         '''
-        pass # Apague essa instrução e inicie seu código aqui
+        verticesNA = set()
+        for i in self.vertices:
+            for j in self.vertices:
+                if i != j and (f"{j}-{i}" not in verticesNA and f"{i}-{j}" not in verticesNA):
+                    arestaAdjacente = any(
+                        (self.arestas[a].v1.rotulo == str(i) and self.arestas[a].v2.rotulo == str(j)) or
+                        (self.arestas[a].v1.rotulo == str(j) and self.arestas[a].v2.rotulo == str(i))
+                        for a in self.arestas)
+                    if not arestaAdjacente:
+                        verticesNA.add(f"{i}-{j}")
+        return verticesNA
 
     def ha_laco(self):
         '''
