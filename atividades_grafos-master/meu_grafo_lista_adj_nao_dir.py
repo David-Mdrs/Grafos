@@ -77,12 +77,12 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         arestas = set()
         if not self.existe_rotulo_vertice(V):
             raise VerticeInvalidoError("Vértice inexistente!")
-        for i in self.arestas:
+        for i in (self.arestas):
             if self.arestas[i].v1.rotulo == V:
                 arestas.add(i)
             if self.arestas[i].v2.rotulo == V:
                 arestas.add(i)
-        return arestas
+        return sorted(arestas)
 
     def eh_completo(self):
         '''
@@ -110,7 +110,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
     def dfs_rec(self, V, arvoreDFS):
         '''
-        Através de recursão, crie uma árvore de busca em profundidade.
+        Através de recursão, crie uma árvore de busca em PROFUNDIDADE.
         Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
         '''
         arestas = self.arestas_sobre_vertice(V)     # Inserindo novas arestas
@@ -126,8 +126,20 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return(arvoreDFS)
 
-    def bfs(self, raiz = ''):
-        # Depth-First Search - Função para busca em profundidade.
+    def bfs(self, V = ''):
+        '''
+        Breadth-First Search - Busca em largura.
+        Função retorna uma árvore de busca em largura.
+        '''
+        arvoreBFS = MeuGrafo()
+        arvoreBFS.adiciona_vertice(V)
+        return self.dfs_rec(V, arvoreBFS)
+
+    def bfs_rec(self, V, arvoreBFS):
+        '''
+        Através de recursão, crie uma árvore de busca em LARGURA.
+        Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
+        '''
         pass
 
 
