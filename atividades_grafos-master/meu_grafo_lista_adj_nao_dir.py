@@ -115,14 +115,14 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         '''
         arestas = self.arestas_sobre_vertice(V)     # Inserindo novas arestas
         for aresta in arestas:                      # Interando sobre cada aresta
-
+            v1, v2 = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo
             # Adicionando vértice e aresta caso não acessado
-            if(self.arestas[aresta].v1.rotulo not in arvoreDFS.rotulos_vertices()):
-                self.proximo_vertice(arvoreDFS, self.arestas[aresta].v2.rotulo, self.arestas[aresta].v1.rotulo)
-                self.dfs_rec(self.arestas[aresta].v1.rotulo, arvoreDFS)
-            if(self.arestas[aresta].v2.rotulo not in arvoreDFS.rotulos_vertices()):
-                self.proximo_vertice(arvoreDFS, self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo)
-                self.dfs_rec(self.arestas[aresta].v2.rotulo, arvoreDFS)
+            if(v1 not in arvoreDFS.rotulos_vertices()):
+                self.proximo_vertice(arvoreDFS, v2, v1)
+                self.dfs_rec(v1, arvoreDFS)
+            if(v2 not in arvoreDFS.rotulos_vertices()):
+                self.proximo_vertice(arvoreDFS, v1, v2)
+                self.dfs_rec(v2, arvoreDFS)
 
         return(arvoreDFS)
 
@@ -141,7 +141,6 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
         '''
         pass
-
 
     # Métodos extras para auxílio na manipulação de outros métodos
 
