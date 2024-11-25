@@ -33,7 +33,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                 return True
         return False
 
-    def grau(self, V=''):
+    def grau(self, V = ''):
         '''
         Provê o grau do vértice passado como parâmetro
         :param V: O rótulo do vértice a ser analisado
@@ -98,3 +98,33 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                     return False
             return True
         return False
+
+    def dfs(self, V = ''):
+        arvoreDFS = MeuGrafo()
+        arvoreDFS.adiciona_vertice(V)
+        return self.dfs_rec(V, arvoreDFS)
+
+    def rotulos_vertices(self):
+        return [vertice.rotulo for vertice in self.vertices]
+
+    def dfs_rec(self, V, arvoreDFS):
+        arestas = self.arestas_sobre_vertice(V)     # Inserindo novas arestas
+        for aresta in arestas:                      # Interando sobre cada aresta
+
+            if(self.arestas[aresta].v1.rotulo not in arvoreDFS.rotulos_vertices()):
+                arvoreDFS.adiciona_vertice(self.arestas[aresta].v1.rotulo)
+                arvoreDFS.adiciona_aresta(self.arestas[aresta].v1.rotulo + self.arestas[aresta].v2.rotulo,
+                                          self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo)
+                self.dfs_rec(self.arestas[aresta].v1.rotulo, arvoreDFS)
+
+            if(self.arestas[aresta].v2.rotulo not in arvoreDFS.rotulos_vertices()):
+                arvoreDFS.adiciona_vertice(self.arestas[aresta].v2.rotulo)
+                arvoreDFS.adiciona_aresta(self.arestas[aresta].v1.rotulo + self.arestas[aresta].v2.rotulo,
+                                          self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo)
+                self.dfs_rec(self.arestas[aresta].v2.rotulo, arvoreDFS)
+
+        return(arvoreDFS)
+
+    def bfs(self, raiz = ''):
+        # Depth-First Search - Função para busca em profundidade.
+        pass
