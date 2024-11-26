@@ -115,13 +115,13 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         '''
         arestas = sorted(self.arestas_sobre_vertice(V))     # Obtém as arestas conectadas ao vértice
         for aresta in arestas:                      # Interando sobre cada aresta
-            v1, v2 = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo
+            v1, v2, rotulo = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo, self.arestas[aresta].rotulo
             # Adicionando vértice e aresta caso não acessado
             if(v1 not in arvoreDFS.rotulos_vertices()):
-                self.proximo_vertice(arvoreDFS, v2, v1)
+                self.proximo_vertice(arvoreDFS, v2, v1, rotulo)
                 self.dfs_rec(v1, arvoreDFS)
             if(v2 not in arvoreDFS.rotulos_vertices()):
-                self.proximo_vertice(arvoreDFS, v1, v2)
+                self.proximo_vertice(arvoreDFS, v1, v2, rotulo)
                 self.dfs_rec(v2, arvoreDFS)
 
         return(arvoreDFS)
@@ -148,11 +148,11 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         arestas = sorted(self.arestas_sobre_vertice(V))     # Obtém as arestas conectadas ao vértice
 
         for aresta in arestas:                                      # Interando sobre cada aresta
-            v1, v2 = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo
+            v1, v2 , rotulo = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo, self.arestas[aresta].rotulo
             proximoVertice = v2 if v1 == V else v1                  # Determina o próximo vértice conectado
 
             if proximoVertice not in arvoreBFS.rotulos_vertices():  # Se o vértice ainda não foi visitado
-                self.proximo_vertice(arvoreBFS, V, proximoVertice)  # Adiciona o vértice à árvore
+                self.proximo_vertice(arvoreBFS, V, proximoVertice, rotulo)  # Adiciona o vértice à árvore
                 verticesNaoVisitados.append(proximoVertice)         # Adiciona o próximo vértice à fila
 
         return self.bfs_rec(verticesNaoVisitados, arvoreBFS)
@@ -166,11 +166,11 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         '''
         return [vertice.rotulo for vertice in self.vertices]
 
-    def proximo_vertice(self, grafo, anterior, proximo):
+    def proximo_vertice(self, grafo, anterior, proximo, rotulo):
         '''
         Função auxiliar que incrementa em determinado grafo
         um novo vértice a partir de outro, assim como sua aresta correspondente.
         Utilizada na função dfs_rec.
         '''
         grafo.adiciona_vertice(proximo)
-        grafo.adiciona_aresta(anterior + proximo, anterior, proximo)
+        grafo.adiciona_aresta(rotulo, anterior, proximo)
