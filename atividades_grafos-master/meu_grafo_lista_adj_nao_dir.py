@@ -82,7 +82,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                 arestas.add(i)
             if self.arestas[i].v2.rotulo == V:
                 arestas.add(i)
-        return sorted(arestas)
+        return set(sorted(arestas))
 
     def eh_completo(self):
         '''
@@ -101,8 +101,8 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
     def dfs(self, V = ''):
         '''
-        Depth-First Search - Busca em profundidade.
-        Função retorna uma árvore de busca em profundidade.
+        Depth-First Search - Busca em PROFUNDIDADE.
+        Função retorna uma árvore de busca em PROFUNDIDADE.
         '''
         arvoreDFS = MeuGrafo()
         arvoreDFS.adiciona_vertice(V)
@@ -113,7 +113,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Através de recursão, crie uma árvore de busca em PROFUNDIDADE.
         Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
         '''
-        arestas = self.arestas_sobre_vertice(V)     # Inserindo novas arestas
+        arestas = self.arestas_sobre_vertice(V)     # Obtém as arestas conectadas ao vértice
         for aresta in arestas:                      # Interando sobre cada aresta
             v1, v2 = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo
             # Adicionando vértice e aresta caso não acessado
@@ -126,21 +126,38 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return(arvoreDFS)
 
-    def bfs(self, V = ''):
+    def bfs(self, V=''):
         '''
-        Breadth-First Search - Busca em largura.
-        Função retorna uma árvore de busca em largura.
+        Breadth-First Search - Busca em LARGURA.
+        Função retorna uma árvore de busca em LARGURA.
         '''
         arvoreBFS = MeuGrafo()
         arvoreBFS.adiciona_vertice(V)
-        return self.dfs_rec(V, arvoreBFS)
+        verticesNaoVisitados = [V]
+        return self.bfs_rec(verticesNaoVisitados, arvoreBFS)
 
-    def bfs_rec(self, V, arvoreBFS):
+
+    def bfs_rec(self, verticesNaoVisitados, arvoreBFS):
         '''
         Através de recursão, crie uma árvore de busca em LARGURA.
         Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
         '''
-        pass
+        if not verticesNaoVisitados:                        # Se não restar vértices a busca acabou
+            return arvoreBFS
+
+        V = verticesNaoVisitados.pop(0)                     # Remove o próximo vértice da fila
+        arestas = sorted(self.arestas_sobre_vertice(V))     # Obtém as arestas conectadas ao vértice
+
+        for aresta in arestas:                                      # Interando sobre cada aresta
+            v1, v2 = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo
+            proximoVertice = v2 if v1 == V else v1                  # Determina o próximo vértice conectado
+
+            if proximoVertice not in arvoreBFS.rotulos_vertices():  # Se o vértice ainda não foi visitado
+                self.proximo_vertice(arvoreBFS, V, proximoVertice)  # Adiciona o vértice à árvore
+                verticesNaoVisitados.append(proximoVertice)         # Adiciona o próximo vértice à fila
+
+        return self.bfs_rec(verticesNaoVisitados, arvoreBFS)
+
 
     # Métodos extras para auxílio na manipulação de outros métodos
 
