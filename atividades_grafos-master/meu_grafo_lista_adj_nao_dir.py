@@ -113,7 +113,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Através de recursão, crie uma árvore de busca em PROFUNDIDADE.
         Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
         '''
-        arestas = self.arestas_sobre_vertice(V)     # Obtém as arestas conectadas ao vértice
+        arestas = sorted(self.arestas_sobre_vertice(V))     # Obtém as arestas conectadas ao vértice
         for aresta in arestas:                      # Interando sobre cada aresta
             v1, v2 = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo
             # Adicionando vértice e aresta caso não acessado
@@ -135,7 +135,6 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         arvoreBFS.adiciona_vertice(V)
         verticesNaoVisitados = [V]
         return self.bfs_rec(verticesNaoVisitados, arvoreBFS)
-
 
     def bfs_rec(self, verticesNaoVisitados, arvoreBFS):
         '''

@@ -2,6 +2,10 @@ from meu_grafo_lista_adj_nao_dir import MeuGrafo
 from bibgrafo.grafo_builder import GrafoBuilder
 from bibgrafo.grafo_json import GrafoJSON
 
+# grafo = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(True).build()
+# k5 = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(True).build()
+# GrafoJSON.grafo_to_json(k5, "test_json/k5.json")
+
 grafo = MeuGrafo()
 
 grafo.adiciona_vertice("A")
@@ -30,6 +34,9 @@ grafo.adiciona_aresta("a12", "I", "J")
 
 print("Imprimindo grafo: ")
 print(grafo)
+
+print("Imprimindo árvore de busca em profundidade: ")
+print(grafo.dfs("A"))
 
 print("Imprimindo árvore de busca em largura: ")
 print(grafo.bfs("A"))
