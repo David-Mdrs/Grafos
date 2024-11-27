@@ -7,7 +7,6 @@
     <list default="true" id="d9ee83d4-e966-4ec1-8447-607634a5a538" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/atividades_grafos-master/grafo_lista_adj_test_nao_dir.py" beforeDir="false" afterPath="$PROJECT_DIR$/atividades_grafos-master/grafo_lista_adj_test_nao_dir.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/atividades_grafos-master/teste.py" beforeDir="false" afterPath="$PROJECT_DIR$/atividades_grafos-master/teste.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,29 +25,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_arestas_sobre_vertice.executor": "Run",
-    "Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_dfs.executor": "Run",
-    "Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_eh_completo.executor": "Run",
-    "Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_grau.executor": "Run",
-    "Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_ha_laco.executor": "Run",
-    "Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_ha_paralelas.executor": "Run",
-    "Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_vertices_nao_adjacentes.executor": "Run",
-    "Python tests.Python tests for grafo_matriz_adj_nao_dir_test.TestGrafo.test_arestas_sobre_vertice.executor": "Run",
-    "Python.meu_grafo_lista_adj_nao_dir.executor": "Run",
-    "Python.teste.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_arestas_sobre_vertice.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_bfs.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_dfs.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_eh_completo.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_grau.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_ha_laco.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_ha_paralelas.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_vertices_nao_adjacentes.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for grafo_matriz_adj_nao_dir_test.TestGrafo.test_arestas_sobre_vertice.executor&quot;: &quot;Run&quot;,
+    &quot;Python.meu_grafo_lista_adj_nao_dir.executor&quot;: &quot;Run&quot;,
+    &quot;Python.teste.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_dfs">
+}</component>
+  <component name="RunManager" selected="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_bfs">
     <configuration name="Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_arestas_sobre_vertice" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Grafos" />
       <option name="ENV_FILES" value="" />
@@ -65,6 +65,22 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_bfs" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Grafos" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/atividades_grafos-master" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;grafo_lista_adj_test_nao_dir.TestGrafo.test_bfs&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_dfs" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Grafos" />
       <option name="ENV_FILES" value="" />
@@ -78,22 +94,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;grafo_lista_adj_test_nao_dir.TestGrafo.test_dfs&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_eh_completo" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="Grafos" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/atividades_grafos-master" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;grafo_lista_adj_test_nao_dir.TestGrafo.test_eh_completo&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -131,11 +131,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_bfs" />
         <item itemvalue="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_dfs" />
         <item itemvalue="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_vertices_nao_adjacentes" />
         <item itemvalue="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_arestas_sobre_vertice" />
         <item itemvalue="Python tests.Python tests for grafo_matriz_adj_nao_dir_test.TestGrafo.test_arestas_sobre_vertice" />
-        <item itemvalue="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_eh_completo" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +157,8 @@
       <updated>1731598181430</updated>
       <workItem from="1731598183778" duration="1421000" />
       <workItem from="1732480293234" duration="10609000" />
-      <workItem from="1732541871590" duration="28109000" />
+      <workItem from="1732541871590" duration="37840000" />
+      <workItem from="1732717043121" duration="2002000" />
     </task>
     <servers />
   </component>
@@ -166,7 +167,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Grafos$meu_grafo_lista_adj_nao_dir.coverage" NAME="meu_grafo_lista_adj_nao_dir Coverage Results" MODIFIED="1732569651139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
-    <SUITE FILE_PATH="coverage/Grafos$.coverage" NAME=" Coverage Results" MODIFIED="1732663569318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
-    <SUITE FILE_PATH="coverage/Grafos$teste.coverage" NAME="teste Coverage Results" MODIFIED="1732663089708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
+    <SUITE FILE_PATH="coverage/Grafos$.coverage" NAME=" Coverage Results" MODIFIED="1732719054086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
+    <SUITE FILE_PATH="coverage/Grafos$teste.coverage" NAME="teste Coverage Results" MODIFIED="1732664980887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
   </component>
 </project>
