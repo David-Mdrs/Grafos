@@ -22,7 +22,10 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Verifica se existe algum laço no grafo.
         :return: Um valor booleano que indica se existe algum laço.
         '''
-        pass
+        for i in range(len(self.vertices)):
+            if len(self.matriz[i][i]) > 0:
+                return True
+        return False
 
     def grau(self, V=''):
         '''
