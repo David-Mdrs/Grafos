@@ -50,7 +50,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
         '''
-        pass
+        for i in range(len(self.vertices)):
+            for j in range(i, len(self.vertices)):
+                print(self.matriz[i][j])
+                if len(self.matriz[i][j]) > 1:
+                    return True
+        return False
 
     def arestas_sobre_vertice(self, V):
         '''
