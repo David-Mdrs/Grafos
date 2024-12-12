@@ -1,33 +1,27 @@
-from meu_grafo_lista_adj_nao_dir import MeuGrafo
-from grafo_lista_adj_test_nao_dir import TestGrafo
-
-# from bibgrafo.grafo_builder import GrafoBuilder
-# from bibgrafo.grafo_json import GrafoJSON
-
-# grafo = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(True).build()
-# k5 = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(True).build()
-# GrafoJSON.grafo_to_json(k5, "test_json/k5.json")
+from meu_grafo_matriz_adj_nao_dir import MeuGrafo
 
 grafo = MeuGrafo()
 
 # Grafo completo
-g_c = MeuGrafo()
-g_c.adiciona_vertice("J")
-g_c.adiciona_vertice("C")
-g_c.adiciona_vertice("E")
-g_c.adiciona_vertice("P")
-g_c.adiciona_aresta('a1', 'J', 'C')
-g_c.adiciona_aresta('a2', 'J', 'E')
-g_c.adiciona_aresta('a3', 'J', 'P')
-g_c.adiciona_aresta('a4', 'E', 'C')
-g_c.adiciona_aresta('a5', 'P', 'C')
-g_c.adiciona_aresta('a6', 'P', 'E')
+grafo = MeuGrafo()
+grafo.adiciona_vertice("J")
+grafo.adiciona_vertice("C")
+grafo.adiciona_vertice("E")
+grafo.adiciona_vertice("P")
+grafo.adiciona_vertice("M")
+grafo.adiciona_vertice("T")
+grafo.adiciona_vertice("Z")
+
+grafo.adiciona_aresta('a1', 'J', 'C')
+grafo.adiciona_aresta('a2', 'C', 'E')
+grafo.adiciona_aresta('a3', 'C', 'E')
+grafo.adiciona_aresta('a4', 'P', 'C')
+grafo.adiciona_aresta('a5', 'P', 'C')
+grafo.adiciona_aresta('a6', 'T', 'C')
+grafo.adiciona_aresta('a7', 'M', 'C')
+grafo.adiciona_aresta('a8', 'M', 'T')
+grafo.adiciona_aresta('a9', 'T', 'Z')
 
 print("Imprimindo grafo: ")
-print(g_c)
-
-print("Imprimindo árvore de busca em profundidade: ")
-print(g_c.dfs("C"))
-
-print("Imprimindo árvore de busca em largura: ")
-print(g_c.bfs("C"))
+print(grafo)
+print(grafo.vertices_nao_adjacentes())

@@ -157,6 +157,48 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return self.bfs_rec(verticesNaoVisitados, arvoreBFS)
 
+    def ha_ciclo(self):
+        '''
+        Função retorna o ciclo de um grafo, caso exista.
+        '''
+        ciclo = []
+        ciclo += self.rotulos_vertices()[0]
+        arvoreDFS = MeuGrafo()
+        arvoreDFS.adiciona_vertice(ciclo[0])
+        return self.ha_ciclo_rec(ciclo[0], arvoreDFS)
+
+    def ha_ciclo_rec(self, V, arvoreDFS):
+        '''
+        Através de recursão, retorne um ciclo caso exista.
+        Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
+        '''
+
+        # if(aresta in list(arvoreDFS.arestas.keys())):
+        #     print("entrou")
+        #     if(v1 in arvoreDFS.rotulos_vertices() and v2 in arvoreDFS.rotulos_vertices()):
+        #         print("encontrou o ciclo: ")
+        #         print(arvoreDFS)
+
+        arestas = sorted(self.arestas_sobre_vertice(V))  # Obtém as arestas conectadas ao vértice
+        for aresta in arestas:  # Interando sobre cada aresta
+            
+            if (self.arestas[aresta].v1.rotulo < self.arestas[aresta].v2.rotulo):
+                v1, v2, rotulo = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo, self.arestas[aresta].rotulo
+            else:
+                v1, v2, rotulo = self.arestas[aresta].v2.rotulo, self.arestas[aresta].v1.rotulo, self.arestas[aresta].rotulo
+
+            #if (rotulo in list(arvoreDFS.arestas.keys())):
+            print(v1, rotulo, v2)
+
+            # Adicionando vértice e aresta caso não acessado
+            if (v1 not in arvoreDFS.rotulos_vertices()):
+                self.proximo_vertice(arvoreDFS, v2, v1, rotulo)
+                self.dfs_rec(v1, arvoreDFS)
+            if (v2 not in arvoreDFS.rotulos_vertices()):
+                self.proximo_vertice(arvoreDFS, v1, v2, rotulo)
+                self.dfs_rec(v2, arvoreDFS)
+
+        return (arvoreDFS)
 
     # Métodos extras para auxílio na manipulação de outros métodos
 

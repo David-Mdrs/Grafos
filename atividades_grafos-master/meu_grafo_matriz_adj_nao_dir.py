@@ -1,7 +1,6 @@
 from bibgrafo.grafo_matriz_adj_nao_dir import GrafoMatrizAdjacenciaNaoDirecionado
 from bibgrafo.grafo_errors import *
 
-
 class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
 
     def vertices_nao_adjacentes(self):
@@ -11,7 +10,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
         :return: Um conjunto (set) com os pares de vértices não adjacentes
         '''
-        pass
+        verticesNaoAdjacentes = set()
+        for i in range(1, len(self.vertices)):
+            for j in range(i):
+                if len(self.matriz[i][j]) == 0:
+                    verticesNaoAdjacentes.add("{}-{}".format(self.vertices[j].rotulo, self.vertices[i].rotulo))
+        return verticesNaoAdjacentes
 
     def ha_laco(self):
         '''
@@ -19,7 +23,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Um valor booleano que indica se existe algum laço.
         '''
         pass
-
 
     def grau(self, V=''):
         '''
