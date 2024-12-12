@@ -77,4 +77,11 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
         '''
-        pass
+        for i in range(len(self.vertices)):
+            for j in range(i, len(self.vertices)):
+                if i != j and len(self.matriz[i][j]) != 1:      # Paralela ou falta
+                    return False
+
+                if i == j and len(self.matriz[i][j]) > 0:       # Laço
+                    return False
+        return True
