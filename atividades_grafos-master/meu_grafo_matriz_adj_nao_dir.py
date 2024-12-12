@@ -34,7 +34,16 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Um valor inteiro que indica o grau do vértice
         :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
-        pass
+        indiceVertice = self.indice_do_vertice(self.get_vertice(V))
+        contador = 0
+
+        for i in range(len(self.vertices)):
+            if i == indiceVertice:                                      # Caso tenha laço
+                contador += len(self.matriz[i][indiceVertice]) * 2      # Incremente a quantidade x 2
+            else:                                                       # Caso não
+                contador += len(self.matriz[i][indiceVertice])          # Incremente apenas a quantidade
+
+        return contador
 
     def ha_paralelas(self):
         '''
