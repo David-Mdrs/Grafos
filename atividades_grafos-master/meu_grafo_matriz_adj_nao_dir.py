@@ -57,7 +57,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
                     return True
         return False
 
-    def arestas_sobre_vertice(self, V):
+    def arestas_sobre_vertice(self, V=''):
         '''
         Provê um conjunto (set) que contém os rótulos das arestas que
         incidem sobre o vértice passado como parâmetro
@@ -65,7 +65,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Um conjunto com os rótulos das arestas que incidem sobre o vértice
         :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
-        pass
+        arestasAdjacentes = []
+        indiceVertice = self.indice_do_vertice(self.get_vertice(V))
+        for i in range(len(self.vertices)):
+            if len(self.matriz[i][indiceVertice]) > 0:
+                arestasAdjacentes += list(self.matriz[i][indiceVertice].keys())
+        return arestasAdjacentes
 
     def eh_completo(self):
         '''
