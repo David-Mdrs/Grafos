@@ -24,4 +24,4 @@ grafo.adiciona_aresta('a9', 'G', 'D')
 
 print("Imprimindo grafo: ")
 print(grafo)
-print(grafo.caminho(1))
+print(grafo.caminho(4))

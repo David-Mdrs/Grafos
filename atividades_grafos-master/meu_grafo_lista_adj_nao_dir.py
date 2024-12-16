@@ -162,17 +162,17 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Função que retorna uma lista com um ciclo, caso exista.
         '''
 
-        if self.ha_paralelas() == True: # Testanto paralelas no grafo
-            self.ha_paralelas()[1]
+        if self.ha_paralelas() == True:  # Testando paralelas no grafo
+            paralela = self.ha_paralelas()[1]
             ciclo = paralela.v1.rotulo, paralela.rotulo, paralela.v2.rotulo
             return ciclo
 
-        arvore_dfs = self.dfs(self.rotulos_vertices()[0])   # Gera a árvore DFS a partir do primeiro vértice
-        arestas_dfs = set(arvore_dfs.arestas.keys())        # Arestas da árvore DFS
-        arestas_originais = set(self.arestas.keys())        # Arestas do grafo original
+        arvore_dfs = self.dfs(self.rotulos_vertices()[0])  # Gera a árvore DFS a partir do primeiro vértice
+        arestas_dfs = list(arvore_dfs.arestas.keys())  # Arestas da árvore DFS (usando lista)
+        arestas_originais = list(self.arestas.keys())  # Arestas do grafo original (usando lista)
 
         # Verifica se há arestas no grafo original que não estão na árvore DFS
-        arestas_extras = arestas_originais - arestas_dfs
+        arestas_extras = [aresta for aresta in arestas_originais if aresta not in arestas_dfs]
 
         if not arestas_extras:
             return False  # Não há ciclos
@@ -200,30 +200,28 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
     def caminho(self, n):
         if n < 1:
             return False
-        elif n == 1:
-            return [self.vertices[0].rotulo]                # Retorna o primeiro vértice
 
         vertices = sorted([str(v) for v in self.vertices])  # Ordena os vértices
         arestas_visitadas = list()
         caminho = list()
 
         for v in vertices:
-            caminho.clear()             # Limpa o caminho
-            arestas_visitadas.clear()   # Limpa as arestas visitadas
-            caminho.append(v)           # Começa o caminho a partir do vértice v
+            caminho.clear()  # Limpa o caminho
+            arestas_visitadas.clear()  # Limpa as arestas visitadas
+            caminho.append(v)  # Começa o caminho a partir do vértice v
 
-            while len(caminho) < n:
-                if not caminho:         # Se o caminho estiver vazio, interrompe
+            while len(caminho) <= n:
+                if not caminho:  # Se o caminho estiver vazio, interrompe
                     break
 
                 # Ordena as arestas conectadas ao vértice atual para garantir consistência
                 arestas = self.arestas_sobre_vertice(caminho[-1])
                 if not arestas:
                     break
-                arestas = sorted(arestas, key=lambda a: str(a))     # Ordena as arestas
+                arestas = sorted(arestas, key=lambda a: str(a))  # Ordena as arestas
 
-                for aresta in arestas:                      # Interando sobre cada aresta
-                    if aresta in arestas_visitadas:         # Se já foi visitada, pule
+                for aresta in arestas:  # Interando sobre cada aresta
+                    if aresta in arestas_visitadas:  # Se já foi visitada, pule
                         continue
 
                     v1 = self.arestas[aresta].v1.rotulo
@@ -236,12 +234,12 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                     caminho.append(proximo)
                     arestas_visitadas.append(aresta)
 
-                    if len(caminho) == n:   # Caminho encontrado
+                    if len(caminho) == n+1:  # Caminho encontrado
                         return caminho
 
                     break
                 else:
-                    if len(caminho) < n:    # Caminho insuficiente
+                    if len(caminho) <= n:  # Caminho insuficiente
                         caminho.pop()
         return False
 
