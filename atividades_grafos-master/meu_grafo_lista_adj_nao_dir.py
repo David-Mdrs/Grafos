@@ -61,10 +61,10 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                     continue
                 if(self.arestas[i].v1.rotulo == self.arestas[j].v1.rotulo and self.arestas[i].v2.rotulo ==
                         self.arestas[j].v2.rotulo):
-                    return True
+                    return True, self.arestas[i]
                 elif(self.arestas[i].v1.rotulo == self.arestas[j].v2.rotulo and self.arestas[i].v2.rotulo ==
                       self.arestas[j].v1.rotulo):
-                    return True
+                    return True, self.aresta[i]
         return False
 
     def arestas_sobre_vertice(self, V):
@@ -159,46 +159,43 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
     def ha_ciclo(self):
         '''
-        Função retorna o ciclo de um grafo, caso exista.
-        '''
-        ciclo = []
-        ciclo += self.rotulos_vertices()[0]
-        arvoreDFS = MeuGrafo()
-        arvoreDFS.adiciona_vertice(ciclo[0])
-        return self.ha_ciclo_rec(ciclo[0], arvoreDFS)
-
-    def ha_ciclo_rec(self, V, arvoreDFS):
-        '''
-        Através de recursão, retorne um ciclo caso exista.
-        Utilizando função auxiliar proximo_vertice() para incrementar na árvore.
+        Função que retorna uma lista com um ciclo, caso exista.
         '''
 
-        # if(aresta in list(arvoreDFS.arestas.keys())):
-        #     print("entrou")
-        #     if(v1 in arvoreDFS.rotulos_vertices() and v2 in arvoreDFS.rotulos_vertices()):
-        #         print("encontrou o ciclo: ")
-        #         print(arvoreDFS)
+        if self.ha_paralelas() == True: # Testanto paralelas no grafo
+            self.ha_paralelas()[1]
+            ciclo = paralela.v1.rotulo, paralela.rotulo, paralela.v2.rotulo
+            return ciclo
 
-        arestas = sorted(self.arestas_sobre_vertice(V))  # Obtém as arestas conectadas ao vértice
-        for aresta in arestas:  # Interando sobre cada aresta
-            
-            if (self.arestas[aresta].v1.rotulo < self.arestas[aresta].v2.rotulo):
-                v1, v2, rotulo = self.arestas[aresta].v1.rotulo, self.arestas[aresta].v2.rotulo, self.arestas[aresta].rotulo
-            else:
-                v1, v2, rotulo = self.arestas[aresta].v2.rotulo, self.arestas[aresta].v1.rotulo, self.arestas[aresta].rotulo
+        arvore_dfs = self.dfs(self.rotulos_vertices()[0])   # Gera a árvore DFS a partir do primeiro vértice
+        arestas_dfs = set(arvore_dfs.arestas.keys())        # Arestas da árvore DFS
+        arestas_originais = set(self.arestas.keys())        # Arestas do grafo original
 
-            #if (rotulo in list(arvoreDFS.arestas.keys())):
-            print(v1, rotulo, v2)
+        # Verifica se há arestas no grafo original que não estão na árvore DFS
+        arestas_extras = arestas_originais - arestas_dfs
 
-            # Adicionando vértice e aresta caso não acessado
-            if (v1 not in arvoreDFS.rotulos_vertices()):
-                self.proximo_vertice(arvoreDFS, v2, v1, rotulo)
-                self.dfs_rec(v1, arvoreDFS)
-            if (v2 not in arvoreDFS.rotulos_vertices()):
-                self.proximo_vertice(arvoreDFS, v1, v2, rotulo)
-                self.dfs_rec(v2, arvoreDFS)
+        if not arestas_extras:
+            return False  # Não há ciclos
 
-        return (arvoreDFS)
+        # Reconstrução do ciclo a partir da primeira aresta extra detectada
+        for aresta_retorno in arestas_extras:
+            v1 = self.arestas[aresta_retorno].v1.rotulo
+            v2 = self.arestas[aresta_retorno].v2.rotulo
+
+            # Reconstruir o ciclo no formato [v1, a1, v2, ...]
+            ciclo = [v1, aresta_retorno, v2]
+            atual = v1
+
+            while atual != v2:
+                for aresta, dados_aresta in arvore_dfs.arestas.items():
+                    if dados_aresta.v2.rotulo == atual:
+                        ciclo.insert(0, aresta)
+                        ciclo.insert(0, dados_aresta.v1.rotulo)
+                        atual = dados_aresta.v1.rotulo
+                        break
+            return ciclo
+
+        return False
 
     # Métodos extras para auxílio na manipulação de outros métodos
 
