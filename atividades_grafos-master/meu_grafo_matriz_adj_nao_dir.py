@@ -71,7 +71,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
             if len(self.matriz[i][indiceVertice]) > 0:
                 for key in self.matriz[i][indiceVertice].keys():
                     arestasAdjacentes.add(key)
-        return arestasAdjacentes
+        return sorted(arestasAdjacentes)
 
     def eh_completo(self):
         '''
