@@ -65,11 +65,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Um conjunto com os rótulos das arestas que incidem sobre o vértice
         :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
-        arestasAdjacentes = []
+        arestasAdjacentes = set()
         indiceVertice = self.indice_do_vertice(self.get_vertice(V))
         for i in range(len(self.vertices)):
             if len(self.matriz[i][indiceVertice]) > 0:
-                arestasAdjacentes += list(self.matriz[i][indiceVertice].keys())
+                for key in self.matriz[i][indiceVertice].keys():
+                    arestasAdjacentes.add(key)
         return arestasAdjacentes
 
     def eh_completo(self):

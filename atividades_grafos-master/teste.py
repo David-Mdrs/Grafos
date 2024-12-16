@@ -1,6 +1,4 @@
-from meu_grafo_lista_adj_nao_dir import MeuGrafo
-
-grafo = MeuGrafo()
+from meu_grafo_matriz_adj_nao_dir import MeuGrafo
 
 # Grafo completo
 grafo = MeuGrafo()
@@ -24,4 +22,4 @@ grafo.adiciona_aresta('a9', 'G', 'D')
 
 print("Imprimindo grafo: ")
 print(grafo)
-print(grafo.caminho(4))
+print(grafo.arestas_sobre_vertice('A'))
