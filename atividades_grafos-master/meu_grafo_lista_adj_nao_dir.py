@@ -197,6 +197,13 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return False
 
+    def conexo(self):
+        arvoreDFS = self.dfs(self.rotulos_vertices()[0])
+        for vertice in self.vertices:
+            if vertice not in arvoreDFS.vertices:
+                return False
+        return True
+
     # Métodos extras para auxílio na manipulação de outros métodos
 
     def rotulos_vertices(self):

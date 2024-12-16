@@ -18,4 +18,4 @@ grafo.adiciona_aresta('a5', 'E', 'A')
 
 print("Imprimindo grafo: ")
 print(grafo)
-print(grafo.ha_ciclo())
+print(grafo.conexo())
