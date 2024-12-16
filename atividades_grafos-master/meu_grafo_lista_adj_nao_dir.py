@@ -197,6 +197,54 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return False
 
+    def caminho(self, n):
+        if n < 1:
+            return False
+        elif n == 1:
+            return [self.vertices[0].rotulo]                # Retorna o primeiro vértice
+
+        vertices = sorted([str(v) for v in self.vertices])  # Ordena os vértices
+        arestas_visitadas = list()
+        caminho = list()
+
+        for v in vertices:
+            caminho.clear()             # Limpa o caminho
+            arestas_visitadas.clear()   # Limpa as arestas visitadas
+            caminho.append(v)           # Começa o caminho a partir do vértice v
+
+            while len(caminho) < n:
+                if not caminho:         # Se o caminho estiver vazio, interrompe
+                    break
+
+                # Ordena as arestas conectadas ao vértice atual para garantir consistência
+                arestas = self.arestas_sobre_vertice(caminho[-1])
+                if not arestas:
+                    break
+                arestas = sorted(arestas, key=lambda a: str(a))     # Ordena as arestas
+
+                for aresta in arestas:                      # Interando sobre cada aresta
+                    if aresta in arestas_visitadas:         # Se já foi visitada, pule
+                        continue
+
+                    v1 = self.arestas[aresta].v1.rotulo
+                    v2 = self.arestas[aresta].v2.rotulo
+
+                    proximo = v1 if v2 == caminho[-1] else v2
+                    if proximo in caminho:
+                        continue
+
+                    caminho.append(proximo)
+                    arestas_visitadas.append(aresta)
+
+                    if len(caminho) == n:   # Caminho encontrado
+                        return caminho
+
+                    break
+                else:
+                    if len(caminho) < n:    # Caminho insuficiente
+                        caminho.pop()
+        return False
+
     def conexo(self):
         arvoreDFS = self.dfs(self.rotulos_vertices()[0])
         for vertice in self.vertices:
