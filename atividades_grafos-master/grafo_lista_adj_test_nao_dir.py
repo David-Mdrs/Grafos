@@ -352,10 +352,17 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.grafo_aleatorio.dfs("G"), self.grafo_aleatorio_dfs_g)
 
     def test_bfs(self):
-        print(self.grafo_paralela.bfs("E"))
         self.assertEqual(self.grafo_k5.bfs("B"), self.grafo_k5_bfs)
         self.assertEqual(self.grafo_paralela.bfs("E"), self.grafo_paralela_bfs_e)
         self.assertEqual(self.grafo_aciclico.bfs("A"), self.grafo_aciclico_bfs_a)
         self.assertEqual(self.grafo_aciclico.bfs("C"), self.grafo_aciclico_bfs_c)
         self.assertEqual(self.grafo_aleatorio.bfs("A"), self.grafo_aleatorio_bfs_a)
         self.assertEqual(self.grafo_aleatorio.bfs("G"), self.grafo_aleatorio_bfs_g)
+
+    def test_caminho(self):
+        self.assertEqual(self.g_d.caminho(1), ['A', 'B'])
+        self.assertFalse(self.g_d2.caminho(1))
+        self.assertEqual(self.g_p.caminho(2), ['C', 'T', 'M'])
+        self.assertFalse(self.g_p.caminho(5))
+        self.assertEqual(self.g_l1.caminho(1), ['A', 'B'])
+        self.assertFalse(self.g_l1.caminho(4))
