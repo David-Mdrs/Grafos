@@ -221,3 +221,10 @@ class TestGrafo(unittest.TestCase):
              [0, 1, 1, 0, 0, 1, 1],
              [0, 1, 1, 0, 0, 0, 1],
              [0, 0, 0, 0, 0, 0, 0]])
+
+        self.assertEqual(
+            self.g_d.warshall(),
+        [[0, 1, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]])
