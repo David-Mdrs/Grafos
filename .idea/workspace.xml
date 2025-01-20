@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9ee83d4-e966-4ec1-8447-607634a5a538" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/atividades_grafos-master/grafo_lista_adj_test_nao_dir.py" beforeDir="false" afterPath="$PROJECT_DIR$/atividades_grafos-master/grafo_lista_adj_test_nao_dir.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atividades_grafos-master/meu_grafo_matriz_adj_dir.py" beforeDir="false" afterPath="$PROJECT_DIR$/atividades_grafos-master/meu_grafo_matriz_adj_dir.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atividades_grafos-master/teste.py" beforeDir="false" afterPath="$PROJECT_DIR$/atividades_grafos-master/teste.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_ha_ciclo">
+  <component name="RunManager">
     <configuration name="Python tests for grafo_lista_adj_test_nao_dir.TestGrafo.test_caminho" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Grafos" />
       <option name="ENV_FILES" value="" />
@@ -175,7 +177,7 @@
       <workItem from="1734305706557" duration="6753000" />
       <workItem from="1734367025924" duration="2683000" />
       <workItem from="1734371704006" duration="336000" />
-      <workItem from="1737380882563" duration="5379000" />
+      <workItem from="1737380882563" duration="6279000" />
     </task>
     <servers />
   </component>
@@ -185,7 +187,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Grafos$meu_grafo_matriz_adj_nao_dir.coverage" NAME="meu_grafo_matriz_adj_nao_dir Coverage Results" MODIFIED="1734047216835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
     <SUITE FILE_PATH="coverage/Grafos$meu_grafo_lista_adj_nao_dir.coverage" NAME="meu_grafo_lista_adj_nao_dir Coverage Results" MODIFIED="1734313835637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
-    <SUITE FILE_PATH="coverage/Grafos$.coverage" NAME=" Coverage Results" MODIFIED="1737409749116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
+    <SUITE FILE_PATH="coverage/Grafos$.coverage" NAME=" Coverage Results" MODIFIED="1737410038807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
     <SUITE FILE_PATH="coverage/Grafos$teste.coverage" NAME="teste Coverage Results" MODIFIED="1734370912064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/atividades_grafos-master" />
   </component>
 </project>
