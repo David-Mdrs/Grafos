@@ -78,3 +78,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                     matrizAlcance[i][j] = 1
                 else:
                     matrizAlcance[i][j] = 0
+
+        # Atualizando dados da matriz de alcance
+        for i in range(len(matrizAlcance)):
+            for j in range(len(matrizAlcance)):
+                if matrizAlcance[j][i] == 1:
+                    for k in range(len(matrizAlcance)):
+                        matrizAlcance[j][k] = max(matrizAlcance[j][k], matrizAlcance[i][k])
+
+        return matrizAlcance
