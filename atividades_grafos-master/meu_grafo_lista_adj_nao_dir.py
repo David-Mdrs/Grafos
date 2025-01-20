@@ -162,14 +162,14 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Função que retorna uma lista com um ciclo, caso exista.
         '''
 
-        if self.ha_paralelas() == True:  # Testando paralelas no grafo
+        if self.ha_paralelas():  # Testando paralelas no grafo
             paralela = self.ha_paralelas()[1]
-            ciclo = paralela.v1.rotulo, paralela.rotulo, paralela.v2.rotulo
+            ciclo = [paralela.v1.rotulo, paralela.rotulo, paralela.v2.rotulo]
             return ciclo
 
-        arvore_dfs = self.dfs(self.rotulos_vertices()[0])  # Gera a árvore DFS a partir do primeiro vértice
-        arestas_dfs = list(arvore_dfs.arestas.keys())  # Arestas da árvore DFS (usando lista)
-        arestas_originais = list(self.arestas.keys())  # Arestas do grafo original (usando lista)
+        arvore_dfs = self.dfs(self.rotulos_vertices()[0])   # Gera a árvore DFS a partir do primeiro vértice
+        arestas_dfs = list(arvore_dfs.arestas.keys())       # Arestas da árvore DFS (usando lista)
+        arestas_originais = list(self.arestas.keys())       # Arestas do grafo original (usando lista)
 
         # Verifica se há arestas no grafo original que não estão na árvore DFS
         arestas_extras = [aresta for aresta in arestas_originais if aresta not in arestas_dfs]
@@ -182,17 +182,26 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             v1 = self.arestas[aresta_retorno].v1.rotulo
             v2 = self.arestas[aresta_retorno].v2.rotulo
 
-            # Reconstruir o ciclo no formato [v1, a1, v2, ...]
             ciclo = [v1, aresta_retorno, v2]
             atual = v1
 
+            visitados = set()                       # Conjunto para verificar vértices já visitados
+
             while atual != v2:
+                encontrou_aresta = False
+                visitados.add(atual)                # Marca o vértice como visitado
+
                 for aresta, dados_aresta in arvore_dfs.arestas.items():
-                    if dados_aresta.v2.rotulo == atual:
+                    if dados_aresta.v2.rotulo == atual and dados_aresta.v1.rotulo not in visitados:
                         ciclo.insert(0, aresta)
                         ciclo.insert(0, dados_aresta.v1.rotulo)
                         atual = dados_aresta.v1.rotulo
+                        encontrou_aresta = True
                         break
+
+                if not encontrou_aresta:
+                    return False
+
             return ciclo
 
         return False
