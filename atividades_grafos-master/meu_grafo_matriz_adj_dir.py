@@ -1,5 +1,6 @@
 from bibgrafo.grafo_matriz_adj_dir import *
 from bibgrafo.grafo_errors import *
+from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
@@ -65,4 +66,15 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         Provê a matriz de alcançabilidade de Warshall do grafo
         :return: Uma lista de listas que representa a matriz de alcançabilidade de Warshall associada ao grafo
         '''
-        pass
+
+
+        # Alocando novo bloco de memória para uma nova matriz
+        matrizAlcance = deepcopy(self.matriz)
+
+        # Formatando matriz de alcance para zeros e uns
+        for i in range(len(matrizAlcance)):
+            for j in range(len(matrizAlcance)):
+                if len(matrizAlcance[i][j]) > 0:
+                    matrizAlcance[i][j] = 1
+                else:
+                    matrizAlcance[i][j] = 0
