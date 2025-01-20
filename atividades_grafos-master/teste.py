@@ -18,4 +18,4 @@ grafo.adiciona_aresta('a6', 'D', 'E')
 print("Imprimindo grafo: ")
 print(grafo)
 
-print(grafo.warshall())
+grafo.warshall()
