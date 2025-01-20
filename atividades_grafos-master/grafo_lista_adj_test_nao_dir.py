@@ -366,3 +366,11 @@ class TestGrafo(unittest.TestCase):
         self.assertFalse(self.g_p.caminho(5))
         self.assertEqual(self.g_l1.caminho(1), ['A', 'B'])
         self.assertFalse(self.g_l1.caminho(4))
+
+    def test_conexo(self):
+        self.assertFalse(self.g_d.conexo())
+        self.assertFalse(self.g_d2.conexo())
+        self.assertTrue(self.g_p.conexo())
+        self.assertTrue(self.g_p2.conexo())
+        self.assertTrue(self.g_p_sem_paralelas.conexo())
+        self.assertTrue(self.g_r.conexo())
