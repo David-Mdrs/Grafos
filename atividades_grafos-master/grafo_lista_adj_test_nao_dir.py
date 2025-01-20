@@ -359,6 +359,11 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.grafo_aleatorio.bfs("A"), self.grafo_aleatorio_bfs_a)
         self.assertEqual(self.grafo_aleatorio.bfs("G"), self.grafo_aleatorio_bfs_g)
 
+    def test_ha_ciclo(self):
+        self.assertEqual(self.g_p_sem_paralelas.ha_ciclo(), ['C', 'a4', 'T', 'a6', 'M', 'a5', 'C'])
+        self.assertEqual(self.g_l1.ha_ciclo(), ['A', 'a1', 'A'])
+        self.assertEqual(self.g_l3.ha_ciclo(), ['D', 'a3', 'D'])
+
     def test_caminho(self):
         self.assertEqual(self.g_d.caminho(1), ['A', 'B'])
         self.assertFalse(self.g_d2.caminho(1))
