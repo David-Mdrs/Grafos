@@ -67,7 +67,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         :return: Uma lista de listas que representa a matriz de alcançabilidade de Warshall associada ao grafo
         '''
 
-
         # Alocando novo bloco de memória para uma nova matriz
         matrizAlcance = deepcopy(self.matriz)
 
