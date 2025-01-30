@@ -259,6 +259,61 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                 return False
         return True
 
+
+    def dijkstra(self, verticeInicial, verticeFinal):
+        # Caso os vértices de início e fim não estejam no grafo, retorne um erro
+        if not self.existe_rotulo_vertice(verticeInicial) or not self.existe_rotulo_vertice(verticeFinal):
+            raise VerticeInvalidoError
+
+        # Inicializando dicionários para auxiliar função
+        beta = {}
+        gama = {}
+        pi = {}
+
+        # Inicializando os dados
+        beta = { v.rotulo: float('inf') for v in self.vertices }    # Pesos de cada vértice no caminho
+        gama = set()                                                # Vértices que já foram visitados
+        pi = { v.rotulo: None for v in self.vertices }              # Vértices que armazena o seu antecessor
+
+        # Inicializando contagem
+        beta[verticeInicial] = 0
+        verticeAtual = verticeInicial
+
+        # Enquanto não chegar ao fim
+        while verticeAtual is not None:
+            gama.add(verticeAtual)                                  # Vértice visitado
+
+            adjacentes = self.arestas_sobre_vertice(verticeAtual)   # Arestas conectadas ao vértice atual
+            for aresta in adjacentes:
+                arestaAtual = self.get_aresta(aresta)
+                oposto = arestaAtual.v2.rotulo if arestaAtual.v1.rotulo == verticeAtual else arestaAtual.v1.rotulo
+
+                if oposto in gama:                                  # Analisando se o vértice já foi visitado
+                    continue
+
+                novoValor = beta[verticeAtual] + arestaAtual.peso
+                if novoValor < beta[oposto]:
+                    beta[oposto] = novoValor
+                    pi[oposto] = verticeAtual
+
+            # Próximo vértice não visitado com o menor peso
+            proximoVertice = {v.rotulo: beta[v.rotulo] for v in self.vertices if v.rotulo not in gama}
+            if not proximoVertice:
+                break
+
+            # Escolhe o vértice com o menor custo
+            verticeAtual = min(proximoVertice, key=proximoVertice.get)
+
+        # Reconstrução do caminho
+        caminhoFinal = []
+        verticeNoCaminho = verticeFinal
+        while verticeNoCaminho is not None:
+            caminhoFinal.append(verticeNoCaminho)
+            verticeNoCaminho = pi[verticeNoCaminho]
+
+        caminhoFinal.reverse()
+        return caminhoFinal
+
     # Métodos extras para auxílio na manipulação de outros métodos
 
     def rotulos_vertices(self):
