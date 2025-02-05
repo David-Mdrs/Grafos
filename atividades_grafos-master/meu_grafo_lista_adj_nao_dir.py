@@ -330,7 +330,8 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         menorPeso[verticeInicial] = 0
 
         # Iniciando interação sobre os vértices e seus valores
-        for interacao in range (len(self.vertices) - 1):
+        for interacao in range (len(self.vertices)):
+            arestasVisitadas = []
             for vertice, valor in menorPeso.items():
 
                 # Caso seja infinito, passe para o próximo vértice
@@ -340,6 +341,12 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                 # Buscando lista de arestas sobre o vertice
                 arestas = self.arestas_sobre_vertice(vertice)
                 for aresta in arestas:
+
+                    # Visualizando arestas que foram ou não visitadas
+                    if aresta in arestasVisitadas:
+                        continue
+                    else:
+                        arestasVisitadas.append(aresta)
 
                     # Buscando o vértice oposto
                     if self.arestas[aresta].v1.rotulo == vertice:
@@ -353,7 +360,12 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                     if valor + self.arestas[aresta].peso < menorPeso[verticeOposto]:
                         menorPeso[verticeOposto] = valor + self.arestas[aresta].peso
 
-        print(menorPeso)
+                        # Analisando mudança para ciclo negativo
+                        if(interacao == len(self.vertices)-1):
+                            print("Ciclo negativo!")
+                            return False
+
+        return menorPeso
 
         # Enquanto não chegar ao fim
         # while verticeAtual is not None:
