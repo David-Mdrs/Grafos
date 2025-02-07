@@ -270,6 +270,60 @@ class TestGrafo(unittest.TestCase):
         self.g_6.adiciona_aresta("a8", "C", "D", 1)
         self.g_6.adiciona_aresta("a9", "D", "F", 1)
 
+        self.g_4_ford = MeuGrafo()
+        self.g_4_ford.adiciona_vertice("A")
+        self.g_4_ford.adiciona_vertice("B")
+        self.g_4_ford.adiciona_vertice("C")
+        self.g_4_ford.adiciona_vertice("D")
+        self.g_4_ford.adiciona_aresta("a1", "A", "B", 1)
+        self.g_4_ford.adiciona_aresta("a2", "B", "C", 2)
+        self.g_4_ford.adiciona_aresta("a3", "C", "A", -5)
+
+        self.g_5_ford = MeuGrafo()
+        self.g_5_ford.adiciona_vertice("A")
+        self.g_5_ford.adiciona_vertice("B")
+        self.g_5_ford.adiciona_vertice("C")
+        self.g_5_ford.adiciona_vertice("D")
+        self.g_5_ford.adiciona_aresta("a1", "A", "B", 1)
+        self.g_5_ford.adiciona_aresta("a2", "B", "C", 2)
+        self.g_5_ford.adiciona_aresta("a3", "C", "A", 5)
+
+        self.g_6_ford = MeuGrafo()
+        self.g_6_ford.adiciona_vertice("I")
+        self.g_6_ford.adiciona_vertice("A")
+        self.g_6_ford.adiciona_vertice("E")
+        self.g_6_ford.adiciona_vertice("D")
+        self.g_6_ford.adiciona_vertice("B")
+        self.g_6_ford.adiciona_vertice("C")
+        self.g_6_ford.adiciona_aresta("a1", "I", "A", 10)
+        self.g_6_ford.adiciona_aresta("a2", "A", "C", 2)
+
+        self.g_6_ford.adiciona_aresta("a3", "I", "E", 8)
+
+        self.g_6_ford.adiciona_aresta("a4", "E", "D", 1)
+        self.g_6_ford.adiciona_aresta("a5", "D", "A", -4)
+        self.g_6_ford.adiciona_aresta("a6", "D", "C", -1)
+        self.g_6_ford.adiciona_aresta("a7", "C", "B", -2)
+        self.g_6_ford.adiciona_aresta("a8", "B", "A", 1)
+        self.g_7_ford = MeuGrafo()
+        self.g_7_ford.adiciona_vertice("I")
+        self.g_7_ford.adiciona_vertice("A")
+        self.g_7_ford.adiciona_vertice("E")
+        self.g_7_ford.adiciona_vertice("D")
+        self.g_7_ford.adiciona_vertice("B")
+        self.g_7_ford.adiciona_vertice("C")
+
+        self.g_7_ford.adiciona_aresta("a1", "I", "A", 10)
+        self.g_7_ford.adiciona_aresta("a2", "A", "C", 2)
+
+        self.g_7_ford.adiciona_aresta("a3", "I", "E", 8)
+
+        self.g_7_ford.adiciona_aresta("a4", "E", "D", 1)
+        self.g_7_ford.adiciona_aresta("a5", "D", "A", 10)
+        self.g_7_ford.adiciona_aresta("a6", "D", "C", 12)
+        self.g_7_ford.adiciona_aresta("a7", "C", "B", 2)
+        self.g_7_ford.adiciona_aresta("a8", "B", "A", 1)
+
     def test_adiciona_aresta(self):
         self.assertTrue(self.g_p.adiciona_aresta('a10', 'J', 'C'))
         a = Aresta("zxc", self.g_p.get_vertice("C"), self.g_p.get_vertice("Z"))
@@ -435,3 +489,9 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.g_6.dijkstra("A", "E"), ['A', 'C', 'D', 'E'])
         with self.assertRaises(VerticeInvalidoError):
             self.assertEqual(self.g_p_sem_paralelas.dijkstra("A","Z"))
+
+    def test_bellman_ford(self):
+        self.assertEqual(self.g_4_ford.bellman_ford('A','D'),False)
+        self.assertEqual(self.g_5_ford.bellman_ford('A','C'),['A', 'B', 'C'])
+        self.assertEqual(self.g_6_ford.bellman_ford('I','C'),['I', 'E', 'D', 'A', 'C'])
+        self.assertEqual(self.g_7_ford.bellman_ford('I','B'),['I', 'A', 'C', 'B'])

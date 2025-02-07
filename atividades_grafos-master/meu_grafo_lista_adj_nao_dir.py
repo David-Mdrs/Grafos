@@ -314,93 +314,32 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         return caminhoFinal
 
     def bellman_ford(self, verticeInicial, verticeFinal):
-        # Caso os vértices de início e fim não estejam no grafo, retorne um erro
         if not self.existe_rotulo_vertice(verticeInicial) or not self.existe_rotulo_vertice(verticeFinal):
             raise VerticeInvalidoError
 
-        # Inicializando dicionários para auxiliar função
-        menorPeso = {}
-        # visitados = {}
-
-        # Inicializando os dados
-        menorPeso = { v.rotulo: float('inf') for v in self.vertices }       # Pesos de cada vértice no caminho
-        # visitados = { v.rotulo: None for v in self.vertices }             # Vértices que armazena o seu antecessor
-
-        # Inicializando contagem
+        menorPeso = {vertice.rotulo: float('inf') for vertice in self.vertices}
         menorPeso[verticeInicial] = 0
+        anterior = {vertice.rotulo: None for vertice in self.vertices}
 
-        # Iniciando interação sobre os vértices e seus valores
-        for interacao in range (len(self.vertices)):
-            arestasVisitadas = []
-            for vertice, valor in menorPeso.items():
+        for _ in range(len(self.vertices) - 1):
+            for aresta in self.arestas:
+                g = self.get_aresta(aresta)
+                if menorPeso[g.v1.rotulo] != float('inf') and menorPeso[g.v1.rotulo] + g.peso < menorPeso[g.v2.rotulo]:
+                    menorPeso[g.v2.rotulo] = menorPeso[g.v1.rotulo] + g.peso
+                    anterior[g.v2.rotulo] = g.v1.rotulo
 
-                # Caso seja infinito, passe para o próximo vértice
-                if valor == float('inf'):
-                    continue
+        for aresta in self.arestas:
+            g = self.get_aresta(aresta)
+            if menorPeso[g.v1.rotulo] != float('inf') and menorPeso[g.v1.rotulo] + g.peso < menorPeso[g.v2.rotulo]:
+                return False
 
-                # Buscando lista de arestas sobre o vertice
-                arestas = self.arestas_sobre_vertice(vertice)
-                for aresta in arestas:
-
-                    # Visualizando arestas que foram ou não visitadas
-                    if aresta in arestasVisitadas:
-                        continue
-                    else:
-                        arestasVisitadas.append(aresta)
-
-                    # Buscando o vértice oposto
-                    if self.arestas[aresta].v1.rotulo == vertice:
-                        verticeOposto = self.arestas[aresta].v2.rotulo
-                    else:
-                        verticeOposto = self.arestas[aresta].v1.rotulo
-
-                    if verticeOposto == verticeInicial:
-                        continue
-
-                    if valor + self.arestas[aresta].peso < menorPeso[verticeOposto]:
-                        menorPeso[verticeOposto] = valor + self.arestas[aresta].peso
-
-                        # Analisando mudança para ciclo negativo
-                        if(interacao == len(self.vertices)-1):
-                            print("Ciclo negativo!")
-                            return False
-
-        return menorPeso
-
-        # Enquanto não chegar ao fim
-        # while verticeAtual is not None:
-        #     gama.add(verticeAtual)                                  # Vértice visitado
-        #
-        #     adjacentes = self.arestas_sobre_vertice(verticeAtual)   # Arestas conectadas ao vértice atual
-        #     for aresta in adjacentes:
-        #         arestaAtual = self.get_aresta(aresta)
-        #         oposto = arestaAtual.v2.rotulo if arestaAtual.v1.rotulo == verticeAtual else arestaAtual.v1.rotulo
-        #
-        #         if oposto in gama:                                  # Analisando se o vértice já foi visitado
-        #             continue
-        #
-        #         novoValor = beta[verticeAtual] + arestaAtual.peso
-        #         if novoValor < beta[oposto]:
-        #             beta[oposto] = novoValor
-        #             pi[oposto] = verticeAtual
-        #
-        #     # Próximo vértice não visitado com o menor peso
-        #     proximoVertice = {v.rotulo: beta[v.rotulo] for v in self.vertices if v.rotulo not in gama}
-        #     if not proximoVertice:
-        #         break
-        #
-        #     # Escolhe o vértice com o menor custo
-        #     verticeAtual = min(proximoVertice, key=proximoVertice.get)
-
-        # Reconstrução do caminho
-        # caminhoFinal = []
-        # verticeNoCaminho = verticeFinal
-        # while verticeNoCaminho is not None:
-        #     caminhoFinal.append(verticeNoCaminho)
-        #     verticeNoCaminho = pi[verticeNoCaminho]
-        #
-        # caminhoFinal.reverse()
-        # return caminhoFinal
+        caminho = []
+        atual = verticeFinal
+        while atual is not None:
+            caminho.append(atual)
+            atual = anterior[atual]
+        caminho.reverse()
+        return caminho
 
 
     # Métodos extras para auxílio na manipulação de outros métodos
